@@ -10,12 +10,14 @@ import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 
 public class MainActivity extends AppCompatActivity
         implements View.OnDragListener, View.OnLongClickListener{
     CardView cardView;
     ImageView imageView;
+    RelativeLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity
         imageView=findViewById(R.id.imageView);
         cardView=findViewById(R.id.cardView);
         imageView.setOnLongClickListener(this);
+        layout=findViewById(R.id.layout);
     }
 
     @Override
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity
                 imgY>=cardView.getY() && imgY<=(cardView.getY()+cardView.getHeight())
             ) {
                 cardView.setVisibility(View.GONE);
-                imageView.setVisibility(View.GONE);
+                layout.removeView(imageView);
             }
             return true;
         }
